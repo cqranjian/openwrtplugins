@@ -6,11 +6,11 @@
 include $(TOPDIR)/rules.mk
 
 LUCI_TITLE:=LuCI support for PPTP VPN Server
-LUCI_DEPENDS:=+pptpd +kmod-mppe +ppp
 LUCI_PKGARCH:=all
+LUCI_DEPENDS:=+pptpvpn
+PKG_NAME:=luci-app-pptp-vpnserver
 PKG_VERSION:=1.1
 PKG_RELEASE:=2
-
 include $(TOPDIR)/feeds/luci/luci.mk
 
 # call BuildPackage - OpenWrt buildroot signature
