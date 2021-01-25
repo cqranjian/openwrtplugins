@@ -6,14 +6,14 @@ PKG_VERSION:=1.0.1
 PKG_RELEASE:=1
 PKG_DATE:=20201223
 
-PKG_BUILD_DIR := $(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
+PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)
 
 
 include $(INCLUDE_DIR)/package.mk
 
 define Package/feixun
-  SECTION:=feixun Apps
-  CATEGORY:=feixun Apps
+  SECTION:=fxun Apps
+  CATEGORY:=fxun Apps
   # DEPENDS:=+libubox-lua
   TITLE:=App feixun module
 endef
@@ -24,10 +24,6 @@ endef
 
 define Build/Compile/Default
 
-endef
-
-define Package/feixun/conffiles
-/etc/config/dc1
 endef
 
 define Package/feixun/description

@@ -7,7 +7,7 @@ include $(TOPDIR)/rules.mk
 
 LUCI_TITLE:=LuCI support for kodexplorer
 LUCI_PKGARCH:=all
-LUCI_DEPENDS:=+kod
+LUCI_DEPENDS:=+appkod
 PKG_NAME:=luci-app-kod
 PKG_VERSION:=1.0
 PKG_RELEASE:=1
