@@ -15,8 +15,8 @@ include $(INCLUDE_DIR)/package.mk
 #include $(INCLUDE_DIR)/kernel.mk
 
 define Package/pptpvpn
-    SECTION:=pptpvpn Apps
-    CATEGORY:=pptpvpn Apps
+    SECTION:=pptp Apps
+    CATEGORY:=pptp Apps
     DEPENDS:=+pptpd +kmod-mppe +ppp
     TITLE:=App pptp-vpnserver module	
 endef
@@ -53,6 +53,4 @@ exit 0
 endef
 
 $(eval $(call BuildPackage,pptpvpn))
-
-
 
