@@ -1,0 +1,68 @@
+#!/bin/sh /etc/rc.common
+START=82
+
+get_config()
+{
+	config_get_bool enabled $1 enabled 0  #enabled
+}
+proc_num()                                              # 计算进程数  
+    {  
+        num=`ps | grep dc1jk | grep -v grep | wc -l`  
+        return $num  
+    }  
+	
+proc_id()                                               # 进程号  
+    {  
+        pid=`ps | grep dc1jk | grep -v grep | awk '{print $1}'`
+        kill $pid >/dev/null 2>&1		
+}
+proc_arm()                                               # 进程号  
+    {  
+        pid_arm=`ps | grep oyy_arm | grep -v grep | awk '{print $1}'` 
+        kill $pid_arm >/dev/null 2>&1
+}
+
+
+start() {
+#启动监控进程
+#proc_num
+#if [ "${NUM}" -gt "1" ];then
+#exit 0
+#fi
+
+    config_load dc1
+	config_foreach get_config dc1
+	
+	if [ $enabled -ne 0 ];  then
+          /usr/bin/dc1/dc1jk &
+    else
+          stop
+	fi
+#local cj_enabled=`uci get dc1.@dc1[0].enabled 2>/dev/null`
+#if [ "$cj_enabled" = 1 ]; then
+#/usr/dc1/dc1jk &
+#else
+#stop
+#fi
+}
+
+stop() {
+#关闭监控进程
+proc_id
+proc_arm
+}
+
+restart() {
+stop
+sleep 2
+start
+}
+
+#if [ "$1" == "start" ] ;then
+#start
+#elif [ "$1" == "stop" ] ;then
+#stop
+#else
+#restart
+#fi
+
