@@ -1,0 +1,35 @@
+#! /bin/sh  
+PRO_NAME=oyy_arm
+
+proc_arm()                                               # 进程号  
+    {  
+        pid_arm=`ps | grep oyy_arm | grep -v grep | awk '{print $1}'` 
+        kill $pid_arm >/dev/null 2>&1
+}
+
+ while true ; do  
+     #用ps获取$PRO_NAME进程数量 
+     NUM=`ps | grep ${PRO_NAME} | grep -v grep |wc -l`  
+     #echo $NUM  
+     #少于1，重启进程  
+     if [ "${NUM}" -lt "1" ];then  
+         echo "${PRO_NAME} was killed"
+        cd /usr/bin/dc1/&&nohup ./oyy_arm >/dev/null 2>&1 &
+
+    #大于1，杀掉所有进程，重启  
+    elif [ "${NUM}" -gt "1" ];then  
+       echo "more than 1 ${PRO_NAME},killall ${PRO_NAME}"  
+         killall -9 oyy_arm
+		 cd /usr/bin/dc1/&&nohup ./oyy_arm >/dev/null 2>&1 &
+
+     fi
+	 #kill僵尸进程
+	 NUM_STAT=`ps | grep ${PRO_NAME} | grep T | grep -v grep | wc -l`  
+     if [ "${NUM_STAT}" -gt "0" ];then  
+        echo "${PRO_NAME} dead！,killall ${PRO_NAME}"
+         killall -9 oyy_arm
+       cd /usr/bin/dc1/&&nohup ./oyy_arm >/dev/null 2>&1 &
+
+    fi  
+    sleep 600s  
+ done
