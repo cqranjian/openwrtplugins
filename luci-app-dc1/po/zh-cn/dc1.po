@@ -1,6 +1,0 @@
-msgid ""
-msgstr "Content-Type: text/plain; charset=UTF-8\n"
-
-#: luci-app-dc1/luasrc/controller/dc1.lua:9
-msgid "feixunchapai"
-msgstr "斐讯插排"
