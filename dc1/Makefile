@@ -33,13 +33,13 @@ endef
 define Package/feixun/install
 	echo "install"
 	$(INSTALL_DIR) $(1)/etc/init.d $(1)/usr/bin/dc1
-	$(INSTALL_DIR) $(1)/etc/config
+#	$(INSTALL_DIR) $(1)/etc/config
 
 	$(INSTALL_BIN) ./files/dc1run.init $(1)/etc/init.d/dc1run
 	
 	$(INSTALL_BIN) ./files/dc1jk $(1)/usr/bin/dc1
 	$(INSTALL_BIN) ./files/oyy_arm $(1)/usr/bin/dc1
-	$(INSTALL_BIN) ./files/dc1.config $(1)/etc/config/dc1
+#	$(INSTALL_BIN) ./files/dc1.config $(1)/etc/config/dc1
 endef
 
 
