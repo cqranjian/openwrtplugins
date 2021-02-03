@@ -7,16 +7,5 @@ uci -q batch <<-EOF >/dev/null
 	commit ucitrack
 EOF
 
-general=$(uci -q get dc1.@general[-1])
-if [ -z "$general" ]; then
-	uci -q add dc1 general
-fi
-if [ "$general"x != "general"x ]; then
-	uci -q batch <<-EOF >/dev/null
-		rename dc1.@general[-1]="general"
-		commit dc1
-	EOF
-fi
-
 rm -rf /tmp/luci-indexcache /tmp/luci-modulecache
 exit 0
